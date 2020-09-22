@@ -47,7 +47,7 @@ def condense_linked_list(node):
   # while the current node is not NONE we keep going through the list
   while cur:
     # if the data element for the node that we are on is already in the dup_value dictionary
-    if cur.data in dup_values:
+    if cur.value in dup_values:
       # thus we need to remove the node from the list
       # to do this we .... look at example (prev.next is an arrow)
       # 1 -> 5 -> 1 -> 4 -> 3 -> 3 -> 4
