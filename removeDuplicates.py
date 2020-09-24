@@ -9,6 +9,9 @@
 # Solution (main.py3):
 # Singly-linked lists are already defined with this interface:
 
+# The simplest way to think of is to delete duplicate nodes in a double loop. The current traversal node is used as the first loop, and the next node of the current node is used as the second loop##
+
+
 class ListNode(object):
 def __init__(self, x):
 self.value = x
