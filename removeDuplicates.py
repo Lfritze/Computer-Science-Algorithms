@@ -9,27 +9,58 @@
 # Solution (main.py3):
 # Singly-linked lists are already defined with this interface:
 
-# The simplest way to think of is to delete duplicate nodes in a double loop. The current traversal node is used as the first loop, and the next node of the current node is used as the second loop##
 
+
+# The simplest way to think of this is we get rid of duplicate nodes in a double loop. The current traversal node is used as the first loop, and the next node of the current node is used as the second loop
+# So we can iterate 2 pointers "CURR" - which iterates through the linked list, and
+# "INNER" - which checks all subsequent nodes for duplicates
+# THis code runs in o(1) space but o(n^2) time - meaning it uses less space but is significantly slower than using a hash
 
 class ListNode(object):
 def __init__(self, x):
 self.value = x
 self.next = None
 
+# So this works by way of like 2 pointers
 def condense_linked_list(node):
   if node is None:
     return None
   curr = node
-while curr is not None:
-  inner = curr
-  while inner.next is not None:
-    if inner.next.value == curr.value:
-      inner.next = inner.next.next
-    else:
-      inner = inner.next
-  curr = curr.next
-return node
+  while curr is not None:
+    # Remove all future nodes that have the same value
+    inner = curr
+    while inner.next is not None:
+      if inner.next.value == curr.value:
+        inner.next = inner.next.next
+      else:
+        inner = inner.next
+    curr = curr.next
+  return node
+
+
+# https://codereview.stackexchange.com/questions/215140/codewars-linked-lists-remove-duplicates
+
+class ListNode(object):
+    def __init__(self, x):
+        self.value= x
+        self.next = None
+
+def remove_duplicates(node):
+  if not node:
+    return node
+    head = node
+    st = set()
+    while head.next:
+        if head.next.value in st:
+            tmp = head.next
+            head.next = head.next.next
+            del tmp
+        else:
+            st.add(head.next.data)
+            head = head.next
+    return node
+
+#################3
 
 def condense_linked_list(node):
   # iterate through the list
@@ -81,5 +112,6 @@ def condense_linked_list(node):
 # and in doing so we are going to keep track of the data held at each of the nodes
 # We are going to use a hash table (dictionary) to keep track of the data elements we found
 # we go through each item in the list and add it to the dictionary. If it is already in the dictionary, we remove it from the list
+
 
 
