@@ -50,16 +50,25 @@ class ListNode(object):
 def remove_duplicates(node):
   if node is None:
     return None
-    # iterate through the list
+    
     # make a node initially equal to the head of the list
     cur = node
+    # now we want to create an object where we can place our value and check if we've seen it before
+    # we initialize it with the current value
     seenVal = set([cur.val])
+    # now we want a WHILE loop... while current.next is not NONE
     while cur.next:
+      # We need to check if we've seen the value
+      # So if it's in the seenVal object
+      # then we next over it ...or delete it
       if cur.next in seenVal:
         cur.next = cur.next.next
       else:
+        # if it's not in the object, then we can use the add() method to put it in the object
         spottedVal.add(cur.next.val)
+        # then we go to the next node
         cur = cur.next
+    # we return the head
     return node
 
 
