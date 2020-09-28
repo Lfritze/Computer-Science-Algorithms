@@ -1,5 +1,5 @@
 // n is the number of value (1 through n)
-// if the 2nd VALUE is always the 2nd ITEM (as long as it exists in individual array) in the array and never the 1st ... then this is the spy
+// if the 2nd VALUE is always the 2nd ITEM in the array and never the 1st ... then this is potentially the spy
 // the 1st item in the array is the truster of the 2nd item
 // so basically if any value is ever the first element in the array...it can never be the spy
 // if the values flip-flop and there is no spy , then we return -1
