@@ -11,7 +11,7 @@
 
 
 
-# The simplest way to think of this is we get rid of duplicate nodes in a double loop. The current traversal node is used as the first loop, and the next node of the current node is used as the second loop
+# One way, although slower at O(n^2) which is QAUDRATIC, to think of this is we get rid of duplicate nodes in a double loop. The current traversal node is used as the first loop, and the next node of the current node is used as the second loop
 # So we can iterate 2 pointers "CURR" - which iterates through the linked list, and
 # "INNER" - which checks all subsequent nodes for duplicates
 # THis code runs in o(1) space but o(n^2) time - meaning it uses less space but is significantly slower than using a hash
@@ -28,8 +28,10 @@ def condense_linked_list(node):
   curr = node
   while curr is not None:
     # Remove all future nodes that have the same value
+    # Inner will point to the current node (curr)
     inner = curr
     while inner.next is not None:
+      # if it is a duplicate, then inner jumps over the node
       if inner.next.value == curr.value:
         inner.next = inner.next.next
       else:
@@ -46,27 +48,28 @@ class ListNode(object):
         self.next = None
 
 def remove_duplicates(node):
-  if not node:
+  if node is None:
+    return None
+    # iterate through the list
+    # make a node initially equal to the head of the list
+    cur = node
+    seenVal = set([cur.val])
+    while cur.next:
+      if cur.next in seenVal:
+        cur.next = cur.next.next
+      else:
+        spottedVal.add(cur.next.val)
+        cur = cur.next
     return node
-    head = node
-    st = set()
-    while head.next:
-        if head.next.value in st:
-            tmp = head.next
-            head.next = head.next.next
-            del tmp
-        else:
-            st.add(head.next.data)
-            head = head.next
-    return node
+
 
 #################3
 
 def condense_linked_list(node):
   # iterate through the list
   # make a node initially equal to the head of the list
-  # as we go along in this list current node pointer (cur = node.head) will be updated as we move along in the list
-  cur = node.head
+  # as we go along in this list current node pointer (cur = node) will be updated as we move along in the list
+  cur = node
 
   # we are also going to keep track of the previous node as well
   # this is so that when we stumble upon a duplicate and we know that it is a node we need to delete...we will still need information
@@ -75,19 +78,20 @@ def condense_linked_list(node):
   prev = None
 
   # We are also keeping track of the data values we encounter and to do so we will be using a dictionary object
-  dup_values = dict()
+  my_dict = {}
 
   # we need a while loop to iterate through the list
   # while the current node is not NONE we keep going through the list
   while cur:
-    # if the data element for the node that we are on is already in the dup_value dictionary
-    if cur.value in dup_values:
+    # if the data element for the node that we are on is already in the  dictionary
+    if cur.value in my_dict:
       # thus we need to remove the node from the list
       # to do this we .... look at example (prev.next is an arrow)
       # 1 -> 5 -> 1 -> 4 -> 3 -> 3 -> 4
       # so we are essentially removing the arrow between 5 -> 1 (because 1 is a duplicate)
       # and then pointing to current.next to make it look like the  1 -> 5 -> 4
       # we move the arrow to point to cur.next and eliminate the duplicate node
+      cur.val = cur.next
       prev.next = cur.next
       # the duplicate node is then just kinda hanging out in space with nothing pointing to it
       # SO now we need to go ahead and remove that node from the list with current = NONE
@@ -95,13 +99,13 @@ def condense_linked_list(node):
 
 
     # otherwise (else) if we have not encountered the current node, we will add it to the dictionary
-    else:
+    else: 
       #we are set the data entry in the dictionary to a COUNT of 1
       # this is the case if we have not yet encountered that node's value 
-      dup_values[cur.data] = 1
+      my_dict[cur.data] = 1
       # then we update the previous node equal to the current node
       prev = cur
-    # then no matter what (if or else condition is hit) - we say current is qual to the previous node's next node
+    # then no matter what (if or else condition is hit) - we say current is equal to the previous node's next node
     cur = prev.next
 
 
