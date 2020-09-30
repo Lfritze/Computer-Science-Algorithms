@@ -18,10 +18,10 @@ function uncover_spy(n, trust) {
     right.push(t[1]);
   }
   // now we need to make a new instance of the array for the right - we can use the 'NEW' operator for this
-  // I will need to concatenate or merge 2 arrays with a spread operator ... so that I don't change the existing array and I return NEW array
-  // for this we also need to create a 'SET' for the right array so that we can iterate over it
+  // I will need to ///concatenate or merge 2 arrays/// use a spread operator ... so that I don't change the existing array and I return NEW array
+  // for this we also need to create a 'SET' for the right array so that we can iterate over it with unique values
   let element = [...new Set(right)]
-  // I am going to need to create a counting or GetFrequency function
+  // I am going to need to create a counting or GetFrequency HELPER function
   // I will also need a "SPY" array to push 'element' into
   let newArr = [];
   // now I need to iterate over 'element'
@@ -45,7 +45,7 @@ function uncover_spy(n, trust) {
     return -1
   }
   // then we can return our result
-  // Note we do not neet to return result[0];...we can just return result
+  // Note we do not need to return result[0];...we can just return result
   return result[0];
 
 }
@@ -66,7 +66,7 @@ function uncover_spy(n, trust) {
     // we can use a trust count array with a length that's 1 more than our total number of people to 
     // make it easier to map each person to the proper index in the array
 
-    // if we used a trust count array with the same length as the number of people then it gets messy bc person 2           would map to index 1 ...etc 
+    // if we used a trust count array with the same length as the number of people then it gets messy bc person 2 would map to index 1 ...etc 
     // so the first person in the tructCOunt array doesn't really play any role in this
 
     

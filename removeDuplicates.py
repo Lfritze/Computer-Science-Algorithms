@@ -65,7 +65,7 @@ def remove_duplicates(node):
         cur.next = cur.next.next
       else:
         # if it's not in the object, then we can use the add() method to put it in the object
-        spottedVal.add(cur.next.val)
+        seenVal.add(cur.next.val)
         # then we go to the next node
         cur = cur.next
     # we return the head
