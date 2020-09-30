@@ -37,7 +37,8 @@ function first_not_repeating_character(s) {
     let char = s[i];
     // now we need to return only the first character that does not repeat
     // we can use the indexOf() method - because it represents a position where the specified search value occurs for the first time
-    // it also returns -1 if the character never occurs again
+    // we can use indexOf(element, i + 1) to find all occurrences of an element and if it equals -1 then it is not present in the rest of the array
+    // 
     // with the indexOf() method we can check if the first occurrence of each character is ever repeated
     // if a particular first character occurrence is not repeated then we simply return that particular character
     // we can do this by s.indexOf()
