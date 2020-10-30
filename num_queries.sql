@@ -62,3 +62,47 @@ DECLARE @myvar AS int = 2
 SET @myvar = @myvar + 9
 
 SELECT @myvar  AS myVariable  -- it will be 11
+
+-- to save memory 
+DECLARE @myvar AS tinyint = 2
+
+SET @myvar = @myvar + 9
+
+SELECT @myvar  AS myVariable
+
+-- NOTE  tinyint doesnt go to negative numbers
+
+------------------------------------------------------------------------------
+DECLARE @myvar AS numeric(7,2)
+
+-- 12345.67 is valid for the above 
+-- 123456.7 is not valid  - 2 digits must go after the decimal
+
+SET @myvar = 12345.67
+
+SELECT @myvar AS myVariable
+
+GO
+
+DECLARE @myvar AS numeric(7)
+
+SET @myvar = 12345.67
+
+SELECT @myvar AS myVariable
+-- ________________________________________________----
+
+DECLARE @myvar AS smallmoney = 123456.7891
+SELECT @myvar as myVaraible
+
+-- _______________________________________________---
+
+DECLARE @myvar AS float(24) = 123456.7891
+SELECT @myvar as myvaraible
+
+-- _______________________________________________---
+
+-- MATH
+
+DECLARE @myvar AS numeric(7,2) = 3
+
+SELECT POWER(@myvar,2)
