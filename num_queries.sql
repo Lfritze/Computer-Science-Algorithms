@@ -137,3 +137,7 @@ SELECT 3 /2
 SELECT 12.345+12.7
 SELECT convert(int,12.345) + convert(int,12.7)
 SELECT convert(int,12.345+12.7)
+
+
+
+ -- QUIZ ANSWER  CAST(134 as int) and CONVERT(int,134)
