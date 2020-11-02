@@ -103,6 +103,37 @@ SELECT @myvar as myvaraible
 
 -- MATH
 
-DECLARE @myvar AS numeric(7,2) = 3
+DECLARE @myvar AS numeric(7,2) = 3.7
 
-SELECT POWER(@myvar,2)
+SELECT POWER(@myvar,3) as myPower
+SELECT SQUARE(@myvar) as mySquare
+SELECT FLOOR(@myvar) as myFloor
+SELECT CEILING(@myvar) as myCeiling
+SELECT ROUND(@myvar, 1) as myRound
+GO
+
+SELECT PI() as myPi
+SELECT EXP(1) as myExp
+
+DECLARE @myvar AS numeric(7,2) = 456
+SELECT ABS(@myVar) as myABS, SIGN(@myVar) as mySIgn
+GO
+SELECT RAND(9765)
+
+-- Converting between data types
+
+SELECT @myvar
+
+-- EXPLICIT
+
+SELECT CONVERT(decimal(5,2),3)/2
+SELECT CAST(3 as decimal(5,2))/2
+
+--SELECT Convert(decimal(5,2),1000)
+
+SELECT 3.0 / 2
+SELECT 3 /2
+
+SELECT 12.345+12.7
+SELECT convert(int,12.345) + convert(int,12.7)
+SELECT convert(int,12.345+12.7)
