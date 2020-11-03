@@ -1,3 +1,6 @@
+-- THIS WILL HELP YOU REMEMBER THE QUERY ORDER (S F W GB H OB)
+-- SELECT, FROM, WHERE, GROUP BY, HAVING, ORDER BY
+
 select * from tblEmployee
 where DateOfBirth between '19760101' and '19861231'
 
@@ -57,3 +60,86 @@ SELECT left(EmployeeLastName,1) as Initial FROM tblEmployee
 SELECT left(EmployeeLastName,1) as Initial, count(*) as CountOfInitial 
 FROM tblEmployee
 GROUP By left(EmployeeLastName,1)
+
+-- Same thing then we order it by Initial
+SELECT left(EmployeeLastName,1) as Initial, count(*) as CountOfInitial 
+FROM tblEmployee
+GROUP By left(EmployeeLastName,1)
+ORDER BY left(EmployeeLastName,1)
+-- Same thing then we order it by Count  (NOTE - it always goes by DESC unless you specify is ASC)
+SELECT left(EmployeeLastName,1) as Initial, count(*) as CountOfInitial 
+FROM tblEmployee
+GROUP By left(EmployeeLastName,1)
+ORDER BY count(*) ASC
+
+-- SAME thing but SELECTING only the top 5 and using the DESC
+SELECT top(5)left(EmployeeLastName,1) as Initial, count(*) as CountOfInitial 
+FROM tblEmployee
+GROUP By left(EmployeeLastName,1)
+ORDER BY count(*) DESC
+-- REsult
+-- B	123
+-- M	111
+-- C	108
+-- H	90
+-- K	68
+
+-- What if we want rows with a specific amount -- We can use HAVING
+SELECT left(EmployeeLastName,1) as Initial, count(*) as CountOfInitial 
+FROM tblEmployee
+GROUP By left(EmployeeLastName,1)
+HAVING count(*) >=50
+ORDER BY count(*) DESC
+-- RESULT
+-- B	123
+-- M	111
+-- C	108
+-- H	90
+-- K	68
+-- L	59
+-- A	57
+
+-- What if we want rows with a specific amount & a spcific initial (WHERE left(EmployeeLastName,1) = 'B') -- We can use HAVING
+SELECT left(EmployeeLastName,1) as Initial, count(*) as CountOfInitial 
+FROM tblEmployee
+WHERE left(EmployeeLastName,1) = 'B'
+GROUP By left(EmployeeLastName,1)
+HAVING count(*) >=50
+ORDER BY count(*) DESC
+--RESULT
+-- B	123
+
+-- SAME AS ABOVE
+-- What if we want rows with a specific amount & Specific date of birth (WHERE DateOfBirth > '1975')-- We can use HAVING
+SELECT left(EmployeeLastName,1) as Initial, count(*) as CountOfInitial 
+FROM tblEmployee
+WHERE DateOfBirth > '1975'
+GROUP By left(EmployeeLastName,1)
+HAVING count(*) >=50
+ORDER BY count(*) DESC
+-- RESULT
+-- B	75
+-- M	75
+-- C	73
+-- H	65
+-- K	51
+
+SELECT left(EmployeeLastName,1) as Initial, count(*) as CountOfInitial 
+FROM tblEmployee
+WHERE DateOfBirth > '19781231'
+GROUP By left(EmployeeLastName,1)
+HAVING count(*) >=50
+ORDER BY count(*) DESC
+--RESULT
+-- M	60
+-- C	58
+-- H	55
+-- B	55
+
+-- NOTE you can use the Alias in this ORDER BY CountOfInitial  (you cannot use it in GROUP BY)
+SELECT left(EmployeeLastName,1) as Initial, count(*) as CountOfInitial 
+FROM tblEmployee
+WHERE DateOfBirth > '19781231'
+GROUP By left(EmployeeLastName,1)
+HAVING count(*) >=20
+ORDER BY CountOfInitial  ASC   -- NOTE WE ARe USING AN ALIAS
